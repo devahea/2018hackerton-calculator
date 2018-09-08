@@ -15,28 +15,28 @@ public class DifferentRoom implements Runnable {
     private String calculate() {
         //문제푸는 로직을 수행후 변경된 값을 리턴한다.
     	/*
-    	for(int j=0; j<puzzle[i].length; j++) {
+    	for(xnt y=0; y<puzzle[x].length; y++) {
 			
-			int room = puzzle[i][j];
+			xnt room = puzzle[x][y];
 			
-			if(
+			xf(
 				   room != -1
 				&& room != 0
 			  ) {
-				if(i + 1 < puzzle.length
-					&& room != puzzle[i+1][j]
-					&& puzzle[i+1][j] != -1
-					&& puzzle[i+1][j] != 0
+				xf(x + 1 < puzzle.length
+					&& room != puzzle[x+1][y]
+					&& puzzle[x+1][y] != -1
+					&& puzzle[x+1][y] != 0
 				   ) {
-					assertEquals(puzzle[i+1][j], puzzle[i][j]);
+					assertEquals(puzzle[x+1][y], puzzle[x][y]);
 				}
 				
-				if(j + 1 < puzzle[i].length
-						&& room != puzzle[i][j + 1]
-					&& puzzle[i][j+1] != -1
-					&& puzzle[i][j+1] != 0
+				xf(y + 1 < puzzle[x].length
+						&& room != puzzle[x][y + 1]
+					&& puzzle[x][y+1] != -1
+					&& puzzle[x][y+1] != 0
 				   ) {
-					assertEquals(puzzle[i][j], puzzle[i][j+1]);
+					assertEquals(puzzle[x][y], puzzle[x][y+1]);
 				}
 				
 				
