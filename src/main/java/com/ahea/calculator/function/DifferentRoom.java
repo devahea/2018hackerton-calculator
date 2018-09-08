@@ -9,7 +9,7 @@ public class DifferentRoom implements Runnable {
 	@Override
     public void run() {
         //ongoingSource를 통해서 정답을 도출한후 다시 변경해준다.
-        CalculatorService.ongoingSource = calculate();
+       // CalculatorService.ongoingSource = calculate();
     }
 
     private String calculate() {

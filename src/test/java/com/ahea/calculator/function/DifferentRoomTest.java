@@ -24,29 +24,29 @@ public class DifferentRoomTest {
 	@Test
 	public void cal() {
 		
-		for(int i=0; i<puzzle.length; i++) {
-			for(int j=0; j<puzzle[i].length; j++) {
+		for(int Y=0; Y<puzzle.length; Y++) {
+			for(int X=0; X<puzzle[Y].length; X++) {
 				
-				int room = puzzle[i][j];
+				int room = puzzle[Y][X];
 				
 				if(
 					   room != -1
 					&& room != 0
 				  ) {
-					if(i + 1 < puzzle.length
-						&& room != puzzle[i+1][j]
-						&& puzzle[i+1][j] != -1
-						&& puzzle[i+1][j] != 0
+					if(Y + 1 < puzzle.length
+						&& room != puzzle[Y+1][X]
+						&& puzzle[Y+1][X] != -1
+						&& puzzle[Y+1][X] != 0
 					   ) {
-						assertEquals(puzzle[i+1][j], puzzle[i][j]);
+						assertEquals(puzzle[Y+1][X], puzzle[Y][X]);
 					}
 					
-					if(j + 1 < puzzle[i].length
-							&& room != puzzle[i][j + 1]
-						&& puzzle[i][j+1] != -1
-						&& puzzle[i][j+1] != 0
+					if(X + 1 < puzzle[Y].length
+						&& room != puzzle[Y][X + 1]
+						&& puzzle[Y][X+1] != -1
+						&& puzzle[Y][X+1] != 0
 					   ) {
-						assertEquals(puzzle[i][j], puzzle[i][j+1]);
+						assertEquals(puzzle[Y][X], puzzle[Y][X+1]);
 					}
 					
 					
