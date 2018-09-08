@@ -1,7 +1,9 @@
 package com.ahea.calculator;
 
 import com.ahea.calculator.function.ExampleCalculator;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -27,25 +29,33 @@ public class CalculatorService {
         this.objectMapper = new ObjectMapper();
     }
 
-    public String execute(Integer memberId) {
+    public String execute(Integer memberId, Integer puzzleId, Integer size, String source) throws JsonProcessingException {
         ongoingSource = getSource();
         calculate();
-        putSource();
-
+//        putSource();
         return null;
     }
 
-    public int[][] getSource() {
+    public int[][] getSource() throws JsonProcessingException {
         Map<String, Object> params = new HashMap<>();
-        params.put("memberId", 1);
-        params.put("puzzleId", 1);
-        params.put("size", 1);
-        params.put("source", 1);
-//        this.restTemplate.postForEntity(BASE_URL + "/mark", );
-        return parse();
+
+        ResponseEntity<Map> response =
+                this.restTemplate.postForEntity(BASE_URL + "/mark", this.objectMapper.writeValueAsString(params), Map.class);
+
+        Map<String, String> body = response.getBody();
+        return parse(body.get("source"));
     }
 
-    public String putSource() {
+    public String putSource(Integer memberId, Integer puzzleId, Integer size, String source) throws JsonProcessingException {
+        Map<String, Object> params = new HashMap<>();
+        params.put("memberId", memberId);
+        params.put("puzzleId", puzzleId);
+        params.put("size", size);
+        params.put("source", source);
+        ResponseEntity<Map> response =
+                this.restTemplate.postForEntity(BASE_URL + "/mark", this.objectMapper.writeValueAsString(params), Map.class);
+
+        Map<String, String> body = response.getBody();
         return null;
     }
 
@@ -59,12 +69,12 @@ public class CalculatorService {
         for (int i = 0; true; i++) {
             Runnable function = INFINITE_FUNCTION.get(i % INFINITE_FUNCTION.size());
             executor.execute(function);
-            if (1 == 1)
-                break;
+
+            //브레이크하는 로직
         }
     }
 
-    private int[][] parse() {
+    int[][] parse(String source) {
         return null;
     }
 }
