@@ -1,19 +1,16 @@
 package com.ahea.calculator.function;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 
 public class EverywhereBlockedCalculatorTest {
 
-	//puzzle	"문제( 아무것도 없는 칸 = -1, 사각형인데 빈칸 = 0, 숫자가 있는 곳 = 해당 숫자)"
-	int[][] puzzle = {
-			 {1,0,0,0,0}
-			,{0,0,2,0,0}
-			,{2,0,0,0,0}
-			,{0,0,0,0,0}
-			,{6,6,0,0,0}
-			,{6,0,0,0,0}
-		  };
+	OneRoomCalculator oneRoomCalculator = new OneRoomCalculator();
 	
+	int[][] puzzle = {{0,1,0,0,0}};
+	int[][] calculate = oneRoomCalculator.calculate(puzzle);
+	int[][] output = {{-1, 1, -1, 0, 0}};
     private static final int ROOM_TYPE = -2;	// 방
     private static final int POOL_TYPE = -1;    // 벽
     
@@ -47,8 +44,9 @@ public class EverywhereBlockedCalculatorTest {
 						&& puzzle[i+2][j] == ROOM_TYPE) {
 					puzzle[i+1][j] = POOL_TYPE;
 				}
-				
 			}
 		}
+        
+        assertThat(calculate).isEqualTo(output);
 	}
 }
