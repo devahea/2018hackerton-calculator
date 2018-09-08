@@ -2,6 +2,9 @@ package com.ahea.calculator.function;
 
 import com.ahea.calculator.CalculatorService;
 
+/*
+대각선에 숫자가 있으면 처리 (5번)
+ */
 public class CrossCheckCalculator implements Runnable {
 
     private static final int ROOM_TYPE = -1;
