@@ -4,14 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 public class DifferentRoomTest {
 	
 	//puzzle	"문제( 아무것도 없는 칸 = -1, 사각형인데 빈칸 = 0, 숫자가 있는 곳 = 해당 숫자)"	
-
 	int[][] puzzle = {
 						 {1,0,0,0,0}
 						,{0,0,2,0,0}
@@ -24,29 +22,29 @@ public class DifferentRoomTest {
 	@Test
 	public void cal() {
 		
-		for(int Y=0; Y<puzzle.length; Y++) {
-			for(int X=0; X<puzzle[Y].length; X++) {
+		for(int y=0; y<puzzle.length; y++) {
+			for(int x=0; x<puzzle[y].length; x++) {
 				
-				int room = puzzle[Y][X];
+				int roomNumber = puzzle[y][x];
 				
 				if(
-					   room != -1
-					&& room != 0
+					   roomNumber != -1
+					&& roomNumber != 0
 				  ) {
-					if(Y + 1 < puzzle.length
-						&& room != puzzle[Y+1][X]
-						&& puzzle[Y+1][X] != -1
-						&& puzzle[Y+1][X] != 0
+					if(y + 1 < puzzle.length
+						&& roomNumber != puzzle[y+1][x]
+						&& puzzle[y+1][x] != -1
+						&& puzzle[y+1][x] != 0
 					   ) {
-						assertEquals(puzzle[Y+1][X], puzzle[Y][X]);
+						assertEquals(puzzle[y+1][x], puzzle[y][x]);
 					}
 					
-					if(X + 1 < puzzle[Y].length
-						&& room != puzzle[Y][X + 1]
-						&& puzzle[Y][X+1] != -1
-						&& puzzle[Y][X+1] != 0
+					if(x + 1 < puzzle[y].length
+						&& roomNumber != puzzle[y][x + 1]
+						&& puzzle[y][x+1] != -1
+						&& puzzle[y][x+1] != 0
 					   ) {
-						assertEquals(puzzle[Y][X], puzzle[Y][X+1]);
+						assertEquals(puzzle[y][x], puzzle[y][x+1]);
 					}
 					
 					
