@@ -9,7 +9,8 @@ public class ExampleCalculator implements Runnable {
         CalculatorService.ongoingSource = calculate();
     }
 
-    private String calculate() {
+    private int[][] calculate() {
+
         //문제푸는 로직을 수행후 변경된 값을 리턴한다.
         return null;
     }
