@@ -20,7 +20,7 @@ public class DifferentRoomTest {
 						,{6,6,0,0,0}
 						,{6,0,0,0,0}
 					  };
-	
+	 
 	@Test
 	public void cal() {
 		
