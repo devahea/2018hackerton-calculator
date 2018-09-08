@@ -1,9 +1,5 @@
 package com.ahea.calculator.function;
 
-import static org.junit.Assert.assertEquals;
-
-import com.ahea.calculator.CalculatorService;
-
 public class DifferentRoom implements Runnable {
 	
 	@Override
