@@ -35,7 +35,7 @@ public class CrossCheckCalculator implements Runnable {
                 }
 
                 //대각선 왼쪽 아래 체크
-                if(!(i-11 == 0) && !(j-1 == width)){
+                if(!(i+1 == height) && !(j == 0)){
                     if(myMap[i][j] > 0 && myMap[i+1][j-1] > 0) {
                         myMap[i][j-1] = POOL_TYPE;
                         myMap[i+1][j] = POOL_TYPE;
