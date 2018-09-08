@@ -1,6 +1,7 @@
 package com.ahea.calculator;
 
-import com.ahea.calculator.function.ExampleCalculator;
+import com.ahea.calculator.function.CrossCheckCalculator;
+import com.ahea.calculator.function.JumpMeetingNumberCheckCalculator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.ParameterizedTypeReference;
@@ -8,6 +9,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +21,9 @@ import static java.util.Arrays.asList;
 
 public class CalculatorService {
     public static final String BASE_URL = "http://localhost:8080";
-    public static final List<Runnable> ONLY_ONE_FUNCTION = asList(new ExampleCalculator());
-    public static final List<Runnable> INFINITE_FUNCTION = asList();
+    public static final List<Runnable> ONLY_ONE_FUNCTION = Collections.emptyList();
+    public static final List<Runnable> INFINITE_FUNCTION
+            = asList(new JumpMeetingNumberCheckCalculator(), new CrossCheckCalculator());
 
     public static int[][] ongoingSource;
 
@@ -44,7 +47,6 @@ public class CalculatorService {
     }
 
     public int[][] getSource(Integer memberId) throws IOException {
-        Map<String, Object> params = new HashMap<>();
         ResponseEntity<Map> response =
                 this.restTemplate.getForEntity(BASE_URL + "/puzzle/start/" + memberId, Map.class);
         Map<String, String> body = response.getBody();
