@@ -21,8 +21,8 @@ public class CalculatorService {
     }
 
     public String execute() {
-        String source = getSource();
-        calculate(source);
+        ongoingSource = getSource();
+        calculate();
         putSource();
 
         return null;
@@ -32,19 +32,19 @@ public class CalculatorService {
         return null;
     }
 
-    public void calculate(String rawSource) {
+    public void calculate() {
         for (Runnable function : ONLY_ONE_FUNCTION) {
             function.run();
         }
 
         ExecutorService executor = Executors.newCachedThreadPool();
 
-        for (Runnable function : INFINITE_FUNCTION) {
+        for (int i = 0; true; i++) {
+            Runnable function = INFINITE_FUNCTION.get(i % INFINITE_FUNCTION.size());
             executor.execute(function);
-            if(1 == 1);
-            break;
+            if (1 == 1)
+                break;
         }
-
     }
 
     public String putSource() {
