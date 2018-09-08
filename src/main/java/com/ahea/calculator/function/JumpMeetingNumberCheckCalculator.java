@@ -2,8 +2,6 @@ package com.ahea.calculator.function;
 
 import com.ahea.calculator.CalculatorService;
 
-import javax.swing.*;
-
 /*
 6번
 숫자가 서로 한칸 떨어져있으면 그 사이는 우물이 된다
