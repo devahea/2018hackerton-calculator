@@ -1,7 +1,9 @@
 package com.ahea.calculator;
 
 import com.ahea.calculator.function.CrossCheckCalculator;
+import com.ahea.calculator.function.EverywhereBlockedCalculator;
 import com.ahea.calculator.function.JumpMeetingNumberCheckCalculator;
+import com.ahea.calculator.function.OneRoomCalculator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.ParameterizedTypeReference;
@@ -23,7 +25,7 @@ public class CalculatorService {
     public static final String BASE_URL = "http://localhost:8080";
     public static final List<Runnable> ONLY_ONE_FUNCTION = Collections.emptyList();
     public static final List<Runnable> INFINITE_FUNCTION
-            = asList(new JumpMeetingNumberCheckCalculator(), new CrossCheckCalculator());
+            = asList(new JumpMeetingNumberCheckCalculator(), new CrossCheckCalculator(), new OneRoomCalculator(), new EverywhereBlockedCalculator());
 
     public static int[][] ongoingSource;
 
@@ -79,11 +81,23 @@ public class CalculatorService {
             function.run();
         }
 
+        if(isFinish()) {
+            isFinishCalculation = true;
+            return;
+        }
+
         ExecutorService executor = Executors.newCachedThreadPool();
 
         for (int i = 0; true; i++) {
             Runnable function = INFINITE_FUNCTION.get(i % INFINITE_FUNCTION.size());
             executor.execute(function);
+
+            try {
+                Thread.sleep(1000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("로직 계산중 ...");
 
             if(isFinish()) {
                 isFinishCalculation = true;
